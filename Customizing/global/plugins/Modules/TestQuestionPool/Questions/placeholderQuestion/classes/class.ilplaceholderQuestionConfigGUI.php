@@ -9,6 +9,6 @@ class ilplaceholderQuestionConfigGUI extends ilPluginConfigGUI
 {
 	function performCommand($cmd)
 	{
-		ilUtil::sendInfo("performCommand($cmd) called");
+		// TODO: Implement performCommand() method.
 	}
 }

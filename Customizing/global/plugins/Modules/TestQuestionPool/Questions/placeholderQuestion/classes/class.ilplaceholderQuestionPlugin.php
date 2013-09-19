@@ -13,6 +13,11 @@ class ilplaceholderQuestionPlugin extends ilQuestionsPlugin
 	{
 		return "placeholderQuestion";
 	}
+
+	final function getQuestionTypeTranslation()
+	{
+		return $this->txt($this->getQuestionType());
+	}
 }
 
 ?>

@@ -4,21 +4,6 @@ include_once "./Modules/Test/classes/inc.AssessmentConstants.php";
 
 class placeholderQuestion extends assQuestion
 {
-	function __construct($title = "", $comment = "", $author = "", $owner = -1, $question = "")
-	{
-		parent::__construct($title, $comment, $author, $owner, $question);
-	}
-
-	public function isComplete()
-	{
-		return true;
-	}
-
-	function getQuestionType()
-	{
-		return "placeholderQuestion";
-	}
-
 	/**
 	 * Saves the learners input of the question to the database.
 	 *
@@ -29,7 +14,7 @@ class placeholderQuestion extends assQuestion
 	 */
 	public function saveWorkingData($active_id, $pass = NULL)
 	{
-		return false;
+		// TODO: Implement saveWorkingData() method.
 	}
 
 	/**
@@ -42,7 +27,7 @@ class placeholderQuestion extends assQuestion
 	 */
 	protected function reworkWorkingData($active_id, $pass, $obligationsAnswered)
 	{
-		return true;
+		// TODO: Implement reworkWorkingData() method.
 	}
 
 	/**
@@ -57,8 +42,9 @@ class placeholderQuestion extends assQuestion
 	 */
 	public function calculateReachedPoints($active_id, $pass = NULL, $returndetails = FALSE)
 	{
-		return 0;
+		// TODO: Implement calculateReachedPoints() method.
 	}
+
 }
 
 ?>
