@@ -32,13 +32,21 @@ function removePlayer() {
 }
 
 $(document).ready(function () {
-	//console.log(document.cookie)
+	document.onkeydown = function (event) {
+		if (event.keyCode === 116) {
+			// disable F5
+			event.preventDefault();
+			event.stopPropagation();
+		}
+	}
 	if (canPlay()) {
+		var endedsignalsent = false;
 		$('audio,video').mediaelementplayer({
 			features: ['current', 'duration', 'volume'], // for development, add 'playpause', 'progress',
 			enableKeyboard: false,
 			// method that fires when the Flash or Silverlight object is ready
 			success: function (mediaElement, domObject) {
+				// override ended event
 				mediaElement.addEventListener('ended', function (event) {
 					// create session cookie to prevent replay of any source file in the html document
 					$('source').each(function (index) {
@@ -48,9 +56,16 @@ $(document).ready(function () {
 						// read http://stackoverflow.com/questions/6791944/how-exactly-does-document-cookie-work
 						document.cookie = cookiekey + "=" + "playedbefore"
 						// remove player
+						endedsignalsent = true;
 						removePlayer();
 					});
 				}, false);
+				// override paused event
+				mediaElement.addEventListener("pause", function (e) {
+					// disable Pause (appearently, the "pause" event is triggered after the player has paused already)
+					if (!endedsignalsent) // the "pause" event is also triggered when the player is removed
+						mediaElement.play();
+				}, true);
 				// autoplay
 				mediaElement.play();
 			}
